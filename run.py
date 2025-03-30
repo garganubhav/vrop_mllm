@@ -63,29 +63,29 @@ def vicrop_qa(model_name, method_name, image_path, question, model, processor, s
 
         if method_name == 'grad_att':
             att_map = gradient_attention_llava(image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size, threshold_fraction=0.8)
         
         elif method_name == 'grad_att_high':
             att_maps = high_res(gradient_attention_llava, image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_maps, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_maps, image.size, bbox_size, threshold_fraction=0.8)
 
         #------------------------------------------------------------------------------------------------------------------------------------
         elif method_name == 'rel_att':
             att_map = rel_attention_llava(image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size, threshold_fraction=0.8)
 
         elif method_name == 'rel_att_high':
             att_maps = high_res(rel_attention_llava, image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_maps, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_maps, image.size, bbox_size, threshold_fraction=0.8)
         
         #------------------------------------------------------------------------------------------------------------------------------------
         elif method_name == 'pure_grad':
             grad = pure_gradient_llava(image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(grad, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(grad, image.size, bbox_size, threshold_fraction=0.8)
 
         elif method_name == 'pure_grad_high':
             grads = high_res(pure_gradient_llava, image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(grads, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(grads, image.size, bbox_size, threshold_fraction=0.8)
 
         # crop_image = image.crop(bbox)
 
@@ -116,29 +116,29 @@ def vicrop_qa(model_name, method_name, image_path, question, model, processor, s
 
         if method_name == 'grad_att':
             att_map = gradient_attention_blip(image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size, threshold_fraction=0.8)
         
         elif method_name == 'grad_att_high':
             att_maps = high_res(gradient_attention_blip, image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_maps, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_maps, image.size, bbox_size, threshold_fraction=0.8)
 
         #------------------------------------------------------------------------------------------------------------------------------------
         elif method_name == 'rel_att':
             att_map = rel_attention_blip(image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size, threshold_fraction=0.8)
         
         elif method_name == 'rel_att_high':
             att_map = high_res(rel_attention_blip, image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(att_map, image.size, bbox_size, threshold_fraction=0.8)
 
         #------------------------------------------------------------------------------------------------------------------------------------
         elif method_name == 'pure_grad':
             grad = pure_gradient_blip(image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(grad, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(grad, image.size, bbox_size, threshold_fraction=0.8)
         
         elif method_name == 'pure_grad_high':
             grad = high_res(pure_gradient_blip, image, short_prompt, general_prompt, model, processor)
-            bbox = bbox_from_att_image_adaptive(grad, image.size, bbox_size)
+            bbox = bbox_from_att_image_adaptive(grad, image.size, bbox_size, threshold_fraction=0.8)
 
         crop_image = image.crop(bbox)
 
